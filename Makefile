@@ -1,4 +1,4 @@
-SRCDIR=../$(shell basename `pwd`)-src
+SRCDIR=../superchat-src
 all: build
 
 build: compile dbc
