@@ -1,0 +1,11 @@
+$ make all
+Will compile Java code and create catalog.
+
+$ make clean
+Will do the cleanup and stop server (if running)
+
+$ make run 
+starts the server
+
+$ make stop
+stops the server
