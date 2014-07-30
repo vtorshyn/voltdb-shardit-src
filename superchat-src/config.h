@@ -5,7 +5,7 @@
 
 #define ERRORMSG(x) std::cout << "Error: " << x << std::endl;
 #define OUT(x) std::cout << x << std::endl;
-//#define DBG(x) std::cout << __PRETTY_FUNCTION__ << ":" << __LINE__ <<" "  << x << std::endl;
-#define DBG(x)
+#define DBG(x) std::cout << __PRETTY_FUNCTION__ << ":" << __LINE__ <<" "  << x << std::endl;
+//#define DBG(x)
 
 #endif // CONFIG_H

@@ -20,8 +20,9 @@ bool GetHistoryCallback::callback(InvocationResponse response) throw (voltdb::Ex
 {
     using namespace std;
     vector <Table> results = response.results();
-    DBG(response.toString());
-    DBG("The number of Tables: " << results.size());
+    if (!response.success())
+        DBG(response.toString());
+    //DBG("The number of Tables: " << results.size());
     for (size_t tables = 0; tables < results.size(); ++tables)
     {
         voltdb::TableIterator iter = results[tables].iterator();

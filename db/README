@@ -1,3 +1,7 @@
+- Directory structure -
+schema - contains DDL and deployment configuration
+java - contains source code of stored procedures
+- Compilation -
 $ make all
 Will compile Java code and create catalog.
 

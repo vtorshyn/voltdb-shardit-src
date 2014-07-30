@@ -24,7 +24,7 @@ public class GetStats extends VoltProcedure {
 			return ustat;
 		}
 		voltQueueSQL(getIpStats, ip);
-		VoltTable[] ipstat = voltExecuteSQL();
+		VoltTable[] ipstat = voltExecuteSQL(true);
 		result[0] = ustat[0];
 		result[1] = ipstat[0];
 		return result;

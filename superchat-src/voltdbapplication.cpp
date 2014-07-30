@@ -11,7 +11,7 @@
 #include <ParameterSet.hpp>
 #include <Exception.hpp>
 
-#define HISTORY_ROW_COUNT "5"
+#define HISTORY_ROW_COUNT 5
 
 using std::vector;
 
@@ -88,17 +88,24 @@ bool VoltdbApplication::invokeAddMessageProc()
 bool VoltdbApplication::invokeGetHistoryProc()
 {
     try {
-    m_client.createConnection(m_server);
+        m_client.createConnection(m_server);
     } catch (std::exception &ex) {
         ERRORMSG("Error: " << ex.what());
         return false;
     }
     vector<Parameter> parameterTypes(1);
     parameterTypes[0] = Parameter(voltdb::WIRE_TYPE_SMALLINT);
+    //parameterTypes[0] = voltdb::Parameter(voltdb::WIRE_TYPE_STRING);
     Procedure procedure("GetHistory", parameterTypes);
 
     voltdb::ParameterSet* params = procedure.params();
-    params->addInt16(5);
+    try {
+        params->addInt16(HISTORY_ROW_COUNT);
+        //params->addString("test:)");
+    } catch(const std::exception& ex) {
+        DBG(ex.what());
+        return false;
+    }
     boost::shared_ptr<GetHistoryCallback> callback(new GetHistoryCallback());
     m_client.invoke(procedure, callback);
     m_client.run();

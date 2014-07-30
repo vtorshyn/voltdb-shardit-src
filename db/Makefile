@@ -2,8 +2,8 @@ VOLTDB_ROOT=$(shell dirname `pwd`)/voltdb-3.7
 VOLTDB=$(VOLTDB_ROOT)/bin/voltdb
 
 CATALOG_FILE=voltdb-chatter.jar
-DDL_FILE=$(shell pwd)/scheme/dbchat_scheme.sql
-DEPLOYMENT_FILE=$(shell pwd)/scheme/deployment.xml
+DDL_FILE=$(shell pwd)/schema/dbchat_schema.sql
+DEPLOYMENT_FILE=$(shell pwd)/schema/deployment.xml
 JAVAC=javac
 #/opt/java/jdk1.7.0_25/bin/javac
 JCLASS_PATH="$(CLASS_PATH):$(VOLTDB_ROOT)/voltdb/*"
@@ -12,7 +12,11 @@ all: compile-java-procs compile-ddl
 compile-java-procs:
 	$(JAVAC) -cp $(JCLASS_PATH) java/vposter/procedures/AddMessage.java \
 		java/vposter/procedures/GetHistory.java \
-		java/vposter/procedures/GetStats.java
+		java/vposter/procedures/GetStats.java \
+		java/vposter/procedures/BadSelectAllUsersData.java \
+		java/vposter/procedures/GoodSelectAllUsersData.java \
+		java/vposter/procedures/BadSelectStar.java
+
 compile-ddl: compile-java-procs
 	$(VOLTDB) compile --classpath=./java/ -o $(CATALOG_FILE) $(DDL_FILE)
 clean:

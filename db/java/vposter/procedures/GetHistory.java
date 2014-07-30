@@ -14,6 +14,6 @@ public class GetHistory extends VoltProcedure {
 		    throw new VoltAbortException();
 		}
 		voltQueueSQL(getHistory, limit);
-		return voltExecuteSQL();
+		return voltExecuteSQL(true);
 	}
 } 

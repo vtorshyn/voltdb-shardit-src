@@ -18,7 +18,7 @@ heavy-test: build run
 	date
 	export COUNTER=0 && \
 	time \
-	    while test $$COUNTER -lt 10000; \
+	    while test $$COUNTER -lt 1000; \
 	do \
 	    ./build/voltdb-post-get-cpp localhost "Test run: $$COUNTER" > /dev/null 2>&1;\
 	    COUNTER=$$(($$COUNTER+1)); \

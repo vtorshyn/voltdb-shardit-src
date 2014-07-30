@@ -11,6 +11,6 @@ public class AddMessage extends VoltProcedure {
 	{
 		long uid = getUniqueId();
 		voltQueueSQL(addNew, uid, user, ip, msg);
-		return voltExecuteSQL();
+		return voltExecuteSQL(true);
 	}
 } 
